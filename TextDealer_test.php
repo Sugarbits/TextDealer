@@ -16,6 +16,7 @@ if(!isset($_POST['func'])){
   <textarea rows="4"  name="data"  cols="50"><?php echo $load;?></textarea>
   
   <br><br>
+  <input type="hidden" name='call' value="blabla">
   <input type="submit" name='func' value="write#over">
   <input type="submit" name='func' value="load">
 </form> 

@@ -1,9 +1,12 @@
 <?php
 #POST is better for sending data's method cuz when using binary data,the size goes bigger
+error_reporting(E_ALL);
+ini_set('display_errors','1');
 
 $func = $_POST['func'];
 $data = $_POST['data'];
 $savePath = $_POST['save_path'];
+$call = (isset($_POST['call'])) ? true : false;
 //print_r($_POST);
 //$savePath Ex:"foldername/filename.txt"
 
@@ -47,4 +50,8 @@ switch($func){
 }
 return $str;
 }
+if($call == false){//positive call fuction
+	echo TextDealer($func,$savePath,$data);
+}
+
 ?>
