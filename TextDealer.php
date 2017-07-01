@@ -4,6 +4,7 @@
 $func = $_POST['func'];
 $data = $_POST['data'];
 $savePath = $_POST['save_path'];
+//print_r($_POST);
 //$savePath Ex:"foldername/filename.txt"
 
 #next version will do 
@@ -17,22 +18,33 @@ foreach($data2 as $val){
 var_dump($data2);
 */
 
+function TextDealer($func,$savePath,$data){
 //assume data always be text
 $text = $data;
-
+$str='';
 switch($func){
 	case 'load':
 		$myfile = fopen($savePath, "r") or die("Unable to open file!");
-		echo $myfile;
+		
+		while(!feof($myfile)) {
+		$str.=fgetc($myfile);
+		}
+		//echo $str;
+		fclose($myfile);
 		break;
 	case 'write#add':
 		$myfile = fopen($savePath, "a+") or die("Unable to open file!");
 		fwrite($myfile, $text);
+		fclose($myfile);
+		$str="add OK";
 		break;
 	case 'write#over':
 		$myfile = fopen($savePath, "w+") or die("Unable to open file!");
 		fwrite($myfile, $text);
+		fclose($myfile);
+		$str="overwrite with:「".$text."」 OK";
 		break;
 }
-	fclose($myfile);
+return $str;
+}
 ?>
